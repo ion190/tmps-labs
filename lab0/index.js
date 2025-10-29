@@ -53,16 +53,14 @@ class Square extends Shape {
 class ShapeFactory {
   constructor() {
     this.registry = new Map();
-
-    // register built-in shapes
-    this.register("circle", { ctor: Circle, params: ["radius"] });
-    this.register("rectangle", { ctor: Rectangle, params: ["width", "height"] });
-    this.register("triangle", { ctor: Triangle, params: ["base", "height"] });
-    this.register("square", { ctor: Square, params: ["side"] });
+    this.register("circle", { s: Circle, params: ["radius"] });
+    this.register("rectangle", { s: Rectangle, params: ["width", "height"] });
+    this.register("triangle", { s: Triangle, params: ["base", "height"] });
+    this.register("square", { s: Square, params: ["side"] });
   }
 
-  register(name, { ctor, params }) {
-    this.registry.set(name.toLowerCase(), { ctor, params });
+  register(name, { s, params }) {
+    this.registry.set(name.toLowerCase(), { s, params });
   }
 
   exists(name) {
@@ -77,7 +75,7 @@ class ShapeFactory {
   create(name, paramValues) {
     const rec = this.registry.get(name.toLowerCase());
     if (!rec) throw new Error(`Unknown shape: ${name}`);
-    return new rec.ctor(...paramValues);
+    return new rec.s(...paramValues);
   }
 
   listShapes() {
@@ -89,9 +87,6 @@ class ShapeFactory {
 class AreaCalculator {
   // accepts any object that implements area()
   computeArea(shapeInstance) {
-    if (!shapeInstance || typeof shapeInstance.area !== "function") {
-      throw new Error("Object provided does not implement area()");
-    }
     return shapeInstance.area();
   }
 }
@@ -125,11 +120,9 @@ class InputHandler {
       const paramNames = this.shapeFactory.getParamNames(shapeName);
       const paramValues = [];
 
-      // Ask for each required param
       let invalidInput = false;
       for (const p of paramNames) {
         const answer = (await rl.question(`Enter ${p}: `)).trim();
-        // validate numeric and positive
         const num = Number(answer);
         if (Number.isNaN(num) || !isFinite(num) || num <= 0) {
           console.log(`Invalid value for ${p}. Must be a positive number.`);
