@@ -23,12 +23,6 @@ public class Engine {
     public void setHorsepower(int horsepower) { this.horsepower = horsepower; }
     public void setFuelType(FuelType fuelType) { this.fuelType = fuelType; }
 
-    public void reset() {
-        // Reset fields to default for pooling reuse
-        this.horsepower = 100;
-        this.fuelType = FuelType.GASOLINE;
-    }
-
     @Override
     public String toString() {
         return "Engine{" +

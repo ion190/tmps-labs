@@ -17,7 +17,7 @@ public class CarDirector {
         return builder.withModel(modelName)
                 .withEngine(engine)
                 .withWheels(wheels)
-                .withPaint(new Paint("Green"))
+                .withPaint(new Paint("white"))
                 .build();
     }
 }

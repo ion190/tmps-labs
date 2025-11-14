@@ -4,7 +4,6 @@ import com.carmanufacturing.domain.models.*;
 
 import java.util.List;
 
-// Factory Method
 public class GasCarFactory extends CarFactory {
     public GasCarFactory(PartsFactory partsFactory) {
         super(partsFactory);

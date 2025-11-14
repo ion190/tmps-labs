@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class Car implements Cloneable {
+public class Car {
     private final String id;
     private String modelName;
     private CarType carType;

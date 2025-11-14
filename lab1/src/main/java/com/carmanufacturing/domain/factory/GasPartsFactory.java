@@ -7,7 +7,6 @@ import com.carmanufacturing.domain.models.Paint;
 import java.util.ArrayList;
 import java.util.List;
 
-// Abstract Factory
 public class GasPartsFactory implements PartsFactory {
     private final Engine.FuelType fuel;
 
@@ -29,6 +28,6 @@ public class GasPartsFactory implements PartsFactory {
 
     @Override
     public Paint createPaint() {
-        return new Paint("Metallic Silver");
+        return new Paint("silver");
     }
 }

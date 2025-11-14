@@ -7,7 +7,6 @@ import com.carmanufacturing.domain.models.Paint;
 import java.util.ArrayList;
 import java.util.List;
 
-// Abstract Factory
 public class ElectricPartsFactory implements PartsFactory {
 
     @Override

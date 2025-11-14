@@ -6,14 +6,11 @@ import com.carmanufacturing.domain.factory.GasCarFactory;
 import com.carmanufacturing.domain.factory.GasPartsFactory;
 import com.carmanufacturing.domain.factory.CarFactory;
 import com.carmanufacturing.domain.models.Engine;
-import com.carmanufacturing.domain.models.Car;
-import com.carmanufacturing.domain.prototype.CarPrototypeRegistry;
 
-// Singleton that manages factories, prototype registry and engine pool
+// Singleton that manages factories, prototype registry
 public class FactoryManager {
     private static volatile FactoryManager instance;
 
-    private final CarPrototypeRegistry prototypeRegistry = new CarPrototypeRegistry();
     private final CarFactory gasCarFactory;
     private final CarFactory electricCarFactory;
 
@@ -21,10 +18,6 @@ public class FactoryManager {
         // initialize resources
         this.gasCarFactory = new GasCarFactory(new GasPartsFactory(Engine.FuelType.GASOLINE));
         this.electricCarFactory = new ElectricCarFactory(new ElectricPartsFactory());
-
-        // add a sample prototype
-        Car sportProto = gasCarFactory.createCar("SportBase");
-        prototypeRegistry.addPrototype("SportBase", sportProto);
     }
 
     public static FactoryManager getInstance() {
@@ -38,5 +31,4 @@ public class FactoryManager {
 
     public CarFactory getGasCarFactory() { return gasCarFactory; }
     public CarFactory getElectricCarFactory() { return electricCarFactory; }
-    public CarPrototypeRegistry getPrototypeRegistry() { return prototypeRegistry; }
 }

@@ -4,7 +4,6 @@ public enum CarType {
     SEDAN,
     SUV,
     SPORTS,
-    TRUCK,
     ELECTRIC,
     HYBRID
 }
